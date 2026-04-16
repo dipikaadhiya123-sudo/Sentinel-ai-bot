@@ -7,23 +7,22 @@
 body {
   margin: 0;
   background: black;
-  font-family: Arial, sans-serif;
   color: white;
+  font-family: Arial;
 }
 
 .chat-container {
-  width: 100%;
-  max-width: 500px;
-  margin: auto;
-  height: 100vh;
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  max-width: 500px;
+  margin: auto;
 }
 
 .header {
-  text-align: center;
   padding: 15px;
-  font-size: 22px;
+  text-align: center;
+  font-size: 20px;
   color: #00ffcc;
   border-bottom: 1px solid #333;
 }
@@ -35,7 +34,7 @@ body {
 }
 
 .message {
-  margin: 10px 0;
+  margin: 8px 0;
   padding: 10px;
   border-radius: 10px;
   max-width: 80%;
@@ -61,7 +60,6 @@ input {
   flex: 1;
   padding: 12px;
   border: none;
-  outline: none;
   background: #111;
   color: white;
 }
@@ -82,11 +80,11 @@ button {
 <div class="header">🚀 Sentinel AI Bot</div>
 
 <div class="chat-box" id="chatBox">
-  <div class="message bot">Hello! Ask me about the market 📊</div>
+  <div class="message bot">Hello! Ask me about BTC or ETH 📊</div>
 </div>
 
 <div class="input-box">
-  <input type="text" id="userInput" placeholder="Type your question...">
+  <input type="text" id="userInput" placeholder="Type message..." />
   <button onclick="sendMessage()">Send</button>
 </div>
 
@@ -95,33 +93,30 @@ button {
 <script>
 function sendMessage() {
   let input = document.getElementById("userInput");
-  let message = input.value;
+  let msg = input.value;
+  if(msg === "") return;
 
-  if(message === "") return;
+  let chat = document.getElementById("chatBox");
 
-  let chatBox = document.getElementById("chatBox");
+  let user = document.createElement("div");
+  user.className = "message user";
+  user.innerText = msg;
+  chat.appendChild(user);
 
-  // User message
-  let userMsg = document.createElement("div");
-  userMsg.className = "message user";
-  userMsg.innerText = message;
-  chatBox.appendChild(userMsg);
+  let bot = document.createElement("div");
+  bot.className = "message bot";
 
-  // Bot reply
-  let botMsg = document.createElement("div");
-  botMsg.className = "message bot";
-
-  if(message.toLowerCase().includes("btc")) {
-    botMsg.innerText = "BTC looks bullish 📈";
-  } else if(message.toLowerCase().includes("eth")) {
-    botMsg.innerText = "ETH showing mixed signals ⚖️";
+  if(msg.toLowerCase().includes("btc")) {
+    bot.innerText = "BTC is bullish 📈";
+  } else if(msg.toLowerCase().includes("eth")) {
+    bot.innerText = "ETH looks sideways ⚖️";
   } else {
-    botMsg.innerText = "Analyzing market trends... 🤖";
+    bot.innerText = "Analyzing market... 🤖";
   }
 
   setTimeout(() => {
-    chatBox.appendChild(botMsg);
-    chatBox.scrollTop = chatBox.scrollHeight;
+    chat.appendChild(bot);
+    chat.scrollTop = chat.scrollHeight;
   }, 500);
 
   input.value = "";
