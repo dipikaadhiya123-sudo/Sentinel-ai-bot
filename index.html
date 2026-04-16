@@ -1,10 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sentinel AI Bot</title>
+<title>Sentinel AI Bot</title>
+
+<style>
+body {
+  margin: 0;
+  background: black;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h1 {
+  font-size: 40px;
+  color: #00ffcc;
+  animation: glow 2s infinite;
+}
+
+p {
+  font-size: 18px;
+  color: #ccc;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border: none;
+  background: #00ffcc;
+  color: black;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: white;
+}
+
+@keyframes glow {
+  0% { text-shadow: 0 0 10px #00ffcc; }
+  50% { text-shadow: 0 0 20px #00ffcc; }
+  100% { text-shadow: 0 0 10px #00ffcc; }
+}
+</style>
+
 </head>
-<body style="background:black; color:white; text-align:center;">
+
+<body>
+
+<div class="container">
   <h1>🚀 SENTINEL AI BOT</h1>
   <p>AI Market Prediction Tool Coming Soon...</p>
+  <button onclick="alert('Bot launching soon 🚀')">Launch Bot</button>
+</div>
+
 </body>
 </html>
