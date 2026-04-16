@@ -7,59 +7,126 @@
 body {
   margin: 0;
   background: black;
-  color: white;
   font-family: Arial, sans-serif;
+  color: white;
+}
+
+.chat-container {
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
   text-align: center;
-}
-
-.container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-h1 {
-  font-size: 40px;
+  padding: 15px;
+  font-size: 22px;
   color: #00ffcc;
-  animation: glow 2s infinite;
+  border-bottom: 1px solid #333;
 }
 
-p {
-  font-size: 18px;
-  color: #ccc;
+.chat-box {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.message {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 80%;
+}
+
+.user {
+  background: #00ffcc;
+  color: black;
+  align-self: flex-end;
+}
+
+.bot {
+  background: #222;
+  align-self: flex-start;
+}
+
+.input-box {
+  display: flex;
+  border-top: 1px solid #333;
+}
+
+input {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  outline: none;
+  background: #111;
+  color: white;
 }
 
 button {
-  margin-top: 20px;
-  padding: 12px 25px;
-  border: none;
+  padding: 12px;
   background: #00ffcc;
-  color: black;
-  border-radius: 25px;
+  border: none;
   cursor: pointer;
 }
-
-button:hover {
-  background: white;
-}
-
-@keyframes glow {
-  0% { text-shadow: 0 0 10px #00ffcc; }
-  50% { text-shadow: 0 0 20px #00ffcc; }
-  100% { text-shadow: 0 0 10px #00ffcc; }
-}
 </style>
-
 </head>
 
 <body>
 
-<div class="container">
-  <h1>🚀 SENTINEL AI BOT</h1>
-  <p>AI Market Prediction Tool Coming Soon...</p>
-  <button onclick="alert('Bot launching soon 🚀')">Launch Bot</button>
+<div class="chat-container">
+
+<div class="header">🚀 Sentinel AI Bot</div>
+
+<div class="chat-box" id="chatBox">
+  <div class="message bot">Hello! Ask me about the market 📊</div>
 </div>
+
+<div class="input-box">
+  <input type="text" id="userInput" placeholder="Type your question...">
+  <button onclick="sendMessage()">Send</button>
+</div>
+
+</div>
+
+<script>
+function sendMessage() {
+  let input = document.getElementById("userInput");
+  let message = input.value;
+
+  if(message === "") return;
+
+  let chatBox = document.getElementById("chatBox");
+
+  // User message
+  let userMsg = document.createElement("div");
+  userMsg.className = "message user";
+  userMsg.innerText = message;
+  chatBox.appendChild(userMsg);
+
+  // Bot reply
+  let botMsg = document.createElement("div");
+  botMsg.className = "message bot";
+
+  if(message.toLowerCase().includes("btc")) {
+    botMsg.innerText = "BTC looks bullish 📈";
+  } else if(message.toLowerCase().includes("eth")) {
+    botMsg.innerText = "ETH showing mixed signals ⚖️";
+  } else {
+    botMsg.innerText = "Analyzing market trends... 🤖";
+  }
+
+  setTimeout(() => {
+    chatBox.appendChild(botMsg);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }, 500);
+
+  input.value = "";
+}
+</script>
 
 </body>
 </html>
