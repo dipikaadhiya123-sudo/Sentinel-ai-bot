@@ -16,11 +16,9 @@ body {
 
   color: white;
 
-  font-family: Arial, sans-serif;
+  font-family: Arial;
 
 }
-
-/* Container */
 
 .chat-container {
 
@@ -28,15 +26,13 @@ body {
 
   flex-direction: column;
 
-  height: 100vh;
+  height: 100dvh; 
 
   max-width: 500px;
 
   margin: auto;
 
 }
-
-/* Header */
 
 .header {
 
@@ -51,8 +47,22 @@ body {
   border-bottom: 1px solid #333;
 
 }
+  
+.input-box {
 
-/* Chat Area */
+  display: flex;
+
+  border-top: 1px solid #333;
+
+  position: sticky;
+
+  bottom: 0;
+
+  background: black;
+
+  padding-bottom: env(safe-area-inset-bottom);
+
+}
 
 .chat-box {
 
@@ -61,56 +71,7 @@ body {
   padding: 10px;
 
   overflow-y: auto;
-
-}
-
-/* Messages */
-
-.message {
-
-  margin: 8px 0;
-
-  padding: 10px;
-
-  border-radius: 10px;
-
-  max-width: 80%;
-
-}
-
-.user {
-
-  background: #00ffcc;
-
-  color: black;
-
-  align-self: flex-end;
-
-}
-
-.bot {
-
-  background: #222;
-
-  align-self: flex-start;
-
-}
-
-/* Input Box */
-
-.input-box {
-
-  display: flex;
-
-  border-top: 1px solid #333;
-
-  background: black;
-
-  padding-bottom: 10px;
-
-}
-
-/* Input */
+  
 
 input {
 
@@ -124,23 +85,17 @@ input {
 
   color: white;
 
-  outline: none;
-
 }
-
-/* Button */
 
 button {
 
-  padding: 12px 18px;
+  padding: 12px;
 
   background: #00ffcc;
 
   border: none;
 
   cursor: pointer;
-
-  font-weight: bold;
 
 }
 
