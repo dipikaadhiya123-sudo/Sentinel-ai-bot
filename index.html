@@ -60,6 +60,26 @@ body {
 
 }
 
+.message {
+
+  margin: 8px 0;
+
+}
+
+.user {
+
+  text-align: right;
+
+}
+
+.bot {
+
+  text-align: left;
+
+  color: #00ffcc;
+
+}
+
 .input-box {
 
   display: flex;
@@ -114,27 +134,91 @@ button {
 
 <div class="chat-container">
 
-  <div class="header">
+  <div class="header">🚀 Sentinel AI Bot</div>
 
-    🚀 Sentinel AI Bot
+  <div class="chat-box" id="chatBox">
 
-  </div>
-
-  <div class="chat-box">
-
-    <p>Hello! Ask me about BTC or ETH 📊</p>
+    <div class="message bot">Hello! Ask me about BTC or ETH 📊</div>
 
   </div>
 
   <div class="input-box">
 
-    <input type="text" placeholder="Type message...">
+    <input type="text" id="userInput" placeholder="Type message...">
 
-    <button>Send</button>
+    <button onclick="sendMessage()">Send</button>
 
   </div>
 
 </div>
+
+<script>
+
+function sendMessage() {
+
+  let input = document.getElementById("userInput");
+
+  let msg = input.value.trim();
+
+  if (msg === "") return;
+
+  let chat = document.getElementById("chatBox");
+
+  // User message
+
+  let user = document.createElement("div");
+
+  user.className = "message user";
+
+  user.innerText = msg;
+
+  chat.appendChild(user);
+
+  // Bot reply
+
+  let bot = document.createElement("div");
+
+  bot.className = "message bot";
+
+  if (msg.toLowerCase().includes("btc")) {
+
+    bot.innerText = "BTC is bullish 📈";
+
+  } else if (msg.toLowerCase().includes("eth")) {
+
+    bot.innerText = "ETH looks sideways ⚖️";
+
+  } else {
+
+    bot.innerText = "Analyzing market... 🤖";
+
+  }
+
+  setTimeout(() => {
+
+    chat.appendChild(bot);
+
+    chat.scrollTop = chat.scrollHeight;
+
+  }, 500);
+
+  input.value = "";
+
+}
+
+// Enter key support
+
+document.getElementById("userInput").addEventListener("keypress", function(e) {
+
+  if (e.key === "Enter") {
+
+    sendMessage();
+
+  }
+
+});
+
+</script>
 
 </body>
 
