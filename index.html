@@ -1,86 +1,163 @@
 <!DOCTYPE html>
+
 <html>
+
 <head>
+
 <title>Sentinel AI Bot</title>
 
 <style>
+
 body {
+
   margin: 0;
+
   background: black;
+
   color: white;
-  font-family: Arial;
+
+  font-family: Arial, sans-serif;
+
 }
+
+/* Container */
 
 .chat-container {
+
   display: flex;
+
   flex-direction: column;
-  min-height: 100vh;
-  padding-bottom: 60px;
+
+  height: 100vh;
+
   max-width: 500px;
+
   margin: auto;
+
 }
+
+/* Header */
 
 .header {
+
   padding: 15px;
+
   text-align: center;
+
   font-size: 20px;
+
   color: #00ffcc;
+
   border-bottom: 1px solid #333;
+
 }
+
+/* Chat Area */
 
 .chat-box {
+
   flex: 1;
+
   padding: 10px;
+
   overflow-y: auto;
-  margin-bottom: 60px;
+
+  margin-bottom: 100px; /* space for input */
+
 }
 
+/* Messages */
+
 .message {
+
   margin: 8px 0;
+
   padding: 10px;
+
   border-radius: 10px;
+
   max-width: 80%;
+
 }
 
 .user {
+
   background: #00ffcc;
+
   color: black;
+
   align-self: flex-end;
+
 }
 
 .bot {
+
   background: #222;
+
   align-self: flex-start;
+
 }
+
+/* Input Box */
 
 .input-box {
+
   display: flex;
+
   border-top: 1px solid #333;
+
   position: fixed;
-  bottom: 60px; /* 👈 IMPORTANT CHANGE */
+
+  bottom: env(safe-area-inset-bottom);
+
   left: 50%;
+
   transform: translateX(-50%);
+
   width: 100%;
+
   max-width: 500px;
+
   background: black;
+
+  padding-bottom: 10px;
+
 }
-  
+
+/* Input */
 
 input {
+
   flex: 1;
+
   padding: 12px;
+
   border: none;
+
   background: #111;
+
   color: white;
+
+  outline: none;
+
 }
 
+/* Button */
+
 button {
-  padding: 12px;
+
+  padding: 12px 18px;
+
   background: #00ffcc;
+
   border: none;
+
   cursor: pointer;
+
 }
+
 </style>
+
 </head>
 
 <body>
@@ -90,48 +167,89 @@ button {
 <div class="header">🚀 Sentinel AI Bot</div>
 
 <div class="chat-box" id="chatBox">
+
   <div class="message bot">Hello! Ask me about BTC or ETH 📊</div>
+
 </div>
 
 <div class="input-box">
+
   <input type="text" id="userInput" placeholder="Type message..." />
+
   <button onclick="sendMessage()">Send</button>
+
 </div>
 
 </div>
 
 <script>
+
 function sendMessage() {
+
   let input = document.getElementById("userInput");
-  let msg = input.value;
+
+  let msg = input.value.trim();
+
   if(msg === "") return;
 
   let chat = document.getElementById("chatBox");
 
+  // User message
+
   let user = document.createElement("div");
+
   user.className = "message user";
+
   user.innerText = msg;
+
   chat.appendChild(user);
 
+  // Bot reply
+
   let bot = document.createElement("div");
+
   bot.className = "message bot";
 
   if(msg.toLowerCase().includes("btc")) {
+
     bot.innerText = "BTC is bullish 📈";
+
   } else if(msg.toLowerCase().includes("eth")) {
+
     bot.innerText = "ETH looks sideways ⚖️";
+
   } else {
+
     bot.innerText = "Analyzing market... 🤖";
+
   }
 
   setTimeout(() => {
+
     chat.appendChild(bot);
+
     chat.scrollTop = chat.scrollHeight;
+
   }, 500);
 
   input.value = "";
+
 }
+
+// ENTER KEY SUPPORT
+
+document.getElementById("userInput").addEventListener("keypress", function(e) {
+
+  if (e.key === "Enter") {
+
+    sendMessage();
+
+  }
+
+});
+
 </script>
 
 </body>
+
 </html>
