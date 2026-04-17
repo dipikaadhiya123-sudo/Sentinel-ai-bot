@@ -6,6 +6,8 @@
 
 <title>Sentinel AI Bot</title>
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
 <style>
 
 body {
@@ -17,7 +19,7 @@ body {
   color: white;
 
   font-family: Arial;
- 
+
 }
 
 .chat-container {
@@ -27,8 +29,6 @@ body {
   flex-direction: column;
 
   height: 100dvh;
-
-  width: 100%;
 
   max-width: 500px;
 
@@ -49,22 +49,6 @@ body {
   border-bottom: 1px solid #333;
 
 }
-  
-.input-box {
-
-  display: flex;
-
-  border-top: 1px solid #333;
-
-  position: sticky;
-
-  bottom: 0;
-
-  background: black;
-
-  padding-bottom: calc(env(safe-area-inset-bottom) + 5px);
-
-}
 
 .chat-box {
 
@@ -73,7 +57,22 @@ body {
   padding: 10px;
 
   overflow-y: auto;
-  
+
+}
+
+.input-box {
+
+  display: flex;
+
+  border-top: 1px solid #333;
+
+  background: black;
+
+  padding: 10px;
+
+  padding-bottom: calc(10px + env(safe-area-inset-bottom));
+
+}
 
 input {
 
@@ -83,9 +82,9 @@ input {
 
   border: none;
 
-  background: #111;
+  outline: none;
 
-  color: white;
+  border-radius: 5px;
 
 }
 
@@ -93,11 +92,17 @@ button {
 
   padding: 12px;
 
-  background: #00ffcc;
+  margin-left: 5px;
 
   border: none;
 
-  cursor: pointer;
+  border-radius: 5px;
+
+  background: #00ffcc;
+
+  color: black;
+
+  font-weight: bold;
 
 }
 
@@ -109,91 +114,27 @@ button {
 
 <div class="chat-container">
 
-<div class="header">🚀 Sentinel AI Bot</div>
+  <div class="header">
 
-<div class="chat-box" id="chatBox">
+    🚀 Sentinel AI Bot
 
-  <div class="message bot">Hello! Ask me about BTC or ETH 📊</div>
+  </div>
+
+  <div class="chat-box">
+
+    <p>Hello! Ask me about BTC or ETH 📊</p>
+
+  </div>
+
+  <div class="input-box">
+
+    <input type="text" placeholder="Type message...">
+
+    <button>Send</button>
+
+  </div>
 
 </div>
-
-<div class="input-box">
-
-  <input type="text" id="userInput" placeholder="Type message..." />
-
-  <button onclick="sendMessage()">Send</button>
-
-</div>
-
-</div>
-
-<script>
-
-function sendMessage() {
-
-  let input = document.getElementById("userInput");
-
-  let msg = input.value.trim();
-
-  if(msg === "") return;
-
-  let chat = document.getElementById("chatBox");
-
-  // User message
-
-  let user = document.createElement("div");
-
-  user.className = "message user";
-
-  user.innerText = msg;
-
-  chat.appendChild(user);
-
-  // Bot reply
-
-  let bot = document.createElement("div");
-
-  bot.className = "message bot";
-
-  if(msg.toLowerCase().includes("btc")) {
-
-    bot.innerText = "BTC is bullish 📈";
-
-  } else if(msg.toLowerCase().includes("eth")) {
-
-    bot.innerText = "ETH looks sideways ⚖️";
-
-  } else {
-
-    bot.innerText = "Analyzing market... 🤖";
-
-  }
-
-  setTimeout(() => {
-
-    chat.appendChild(bot);
-
-    chat.scrollTop = chat.scrollHeight;
-
-  }, 500);
-
-  input.value = "";
-
-}
-
-// ENTER KEY SUPPORT
-
-document.getElementById("userInput").addEventListener("keypress", function(e) {
-
-  if (e.key === "Enter") {
-
-    sendMessage();
-
-  }
-
-});
-
-</script>
 
 </body>
 
