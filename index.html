@@ -6,7 +6,7 @@
 
 <title>Sentinel AI Bot</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 
@@ -28,7 +28,7 @@ body {
 
   flex-direction: column;
 
-  height: 100dvh;
+  height: 100vh;
 
   max-width: 500px;
 
@@ -57,8 +57,6 @@ body {
   padding: 10px;
 
   overflow-y: auto;
-
-  scroll-behavior: smooth;
 
 }
 
@@ -90,41 +88,33 @@ body {
 
   background: black;
 
-  padding: 6px;
+  padding: 10px;
 
-  flex-shrink: 0;
-  
 }
 
 input {
 
   flex: 1;
 
-  padding: 10px;
+  padding: 12px;
 
   border: none;
 
   outline: none;
 
-  border-radius: 5px;
-
 }
 
 button {
 
-  padding: 10px 14px;
+  padding: 12px;
 
-  margin-left: 6px;
+  margin-left: 5px;
 
   border: none;
-
-  border-radius: 5px;
 
   background: #00ffcc;
 
   color: black;
-
-  font-weight: bold;
 
 }
 
@@ -166,8 +156,6 @@ function sendMessage() {
 
   let chat = document.getElementById("chatBox");
 
-  // User message
-
   let user = document.createElement("div");
 
   user.className = "message user";
@@ -175,8 +163,6 @@ function sendMessage() {
   user.innerText = msg;
 
   chat.appendChild(user);
-
-  // Bot reply
 
   let bot = document.createElement("div");
 
@@ -192,7 +178,7 @@ function sendMessage() {
 
   } else {
 
-    bot.innerText = "Analyzing market... 🤖";
+    bot.innerText = "Analyzing... 🤖";
 
   }
 
@@ -207,18 +193,6 @@ function sendMessage() {
   input.value = "";
 
 }
-
-// Enter key support
-
-document.getElementById("userInput").addEventListener("keypress", function(e) {
-
-  if (e.key === "Enter") {
-
-    sendMessage();
-
-  }
-
-});
 
 </script>
 
